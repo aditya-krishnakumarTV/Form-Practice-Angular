@@ -1,0 +1,63 @@
+<div class="container">
+  <form [formGroup]="myForm">
+    <div class="form-group">
+      <input
+        class="form-control"
+        type="text"
+        placeholder="Enter Name"
+        formControlName="name"
+      />
+      <span class="help-block" *ngIf="nameField.touched && nameField.invalid">
+        Please enter proper Name!
+      </span>
+    </div>
+    <br />
+
+    <div class="form-group">
+      <input
+        class="form-control"
+        type="text"
+        placeholder="Enter Email"
+        name="email"
+        formControlName="email"
+      />
+      <span class="help-block" *ngIf="emailField.touched && emailField.invalid">
+        Please enter proper Email!
+      </span>
+    </div>
+    <br />
+
+    <div class="form-group">
+      <input
+        class="form-control"
+        type="text"
+        placeholder="Enter Number"
+        formControlName="number"
+      />
+      <span
+        class="help-block"
+        *ngIf="numberField.touched && numberField.invalid"
+      >
+        Please enter proper Number!
+      </span>
+    </div>
+    <br />
+
+    <div class="form-group">
+      <input
+        class="form-control"
+        type="text"
+        placeholder="Enter Date"
+        formControlName="date"
+      />
+      <span>DD/MM/YYYY</span>
+      <br />
+
+      <span class="help-block" *ngIf="dateField.touched && dateField.invalid">
+        Please enter proper Date!
+      </span>
+    </div>
+    <br />
+
+  </form>
+</div>

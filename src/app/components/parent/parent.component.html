@@ -1,0 +1,11 @@
+<div class="container">
+  <app-child></app-child>
+  <br />
+  <button type="button" class="btn btn-primary" (click)="showStatus()">
+    Validate
+  </button>
+  &nbsp;
+  <button type="button" class="btn btn-primary" [disabled]="saveStatus" (click)="showCount()">
+    Save
+  </button>
+</div>
