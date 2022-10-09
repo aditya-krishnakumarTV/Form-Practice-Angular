@@ -1,5 +1,7 @@
+import * as moment from 'moment';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormControl, FormBuilder, Validators, ValidationErrors, AbstractControl } from '@angular/forms';
+
 import { FormService } from 'src/app/services/form.service';
 
 @Component({
@@ -17,12 +19,20 @@ export class ChildComponent implements OnInit {
 
   ngOnInit(): void {
     this.myForm = this.fb.group({
-      'name': ['asd', Validators.required],
-      'email': ['asd@mail.com', [Validators.required, Validators.email]],
-      'number': ['1234567891', [Validators.required, Validators.maxLength(10), Validators.pattern('^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$')]],
-      'date': ['', [Validators.required]]
+      'name': ['', Validators.required],
+      'email': ['', [Validators.required, Validators.email]],
+      'number': ['', [Validators.required, Validators.maxLength(10), Validators.pattern('^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$')]],
+      'date': ['', [Validators.required, this.dateValidator]]
     })
     this.checkValidation()
+  }
+
+  dateValidator(control: AbstractControl): ValidationErrors | null {
+    const contValue = control.value
+    if (!moment(contValue, "DD/MM/YYYY", true).isValid()) {
+      return { 'dateFormatInvalid': true }
+    }
+    return null;
   }
 
   get nameField(): FormControl {
@@ -52,6 +62,10 @@ export class ChildComponent implements OnInit {
         }
       }
     })
+  }
+
+  log(value: string) {
+    console.log(this.myForm.get(value))
   }
 
 }

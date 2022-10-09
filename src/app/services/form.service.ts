@@ -15,7 +15,9 @@ export class FormService {
   constructor() { }
 
   pushFormValues(formValues: any) {
-    this.formArr.push(formValues)
+    if (!this.formArr.includes(formValues)) {
+      this.formArr.push(formValues)
+    }
   }
 
   formStatus(valStatus: string) {
@@ -26,7 +28,7 @@ export class FormService {
     return this.status
   }
 
-  getCount(){
+  getCount() {
     console.log(this.formArr)
     return this.formArr.length
   }

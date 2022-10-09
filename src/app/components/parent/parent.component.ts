@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { FormService } from 'src/app/services/form.service';
 
 @Component({
@@ -26,7 +27,7 @@ export class ParentComponent implements OnInit {
     }
   }
 
-  showCount(){
+  showCount() {
     console.log(this.formService.getCount())
   }
 

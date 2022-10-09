@@ -33,12 +33,20 @@
         type="text"
         placeholder="Enter Number"
         formControlName="number"
+        (change)="log('number')"
       />
       <span
         class="help-block"
-        *ngIf="numberField.touched && numberField.invalid"
+        *ngIf="
+          numberField.touched &&
+          numberField.invalid &&
+          !numberField.hasError('maxlength')
+        "
       >
         Please enter proper Number!
+      </span>
+      <span class="help-block" *ngIf="numberField.hasError('maxlength')">
+        Only 10 digits allowed!
       </span>
     </div>
     <br />
@@ -49,15 +57,18 @@
         type="text"
         placeholder="Enter Date"
         formControlName="date"
+        (change)="log('date')"
       />
       <span>DD/MM/YYYY</span>
       <br />
 
-      <span class="help-block" *ngIf="dateField.touched && dateField.invalid">
-        Please enter proper Date!
+      <span
+        class="help-block"
+        *ngIf="dateField.touched && dateField.hasError('dateFormatInvalid')"
+      >
+        Please enter proper date Format!
       </span>
     </div>
     <br />
-
   </form>
 </div>
